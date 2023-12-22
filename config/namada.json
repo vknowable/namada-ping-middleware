@@ -1,0 +1,21 @@
+{
+    "chain_name": "namada",
+    "api": [
+        {"provider": "localhost", "address": "http://localhost:1317"}
+    ],
+    "rpc": [
+        {"provider": "localhost", "address": "http://localhost:26657"}
+    ],
+    "sdk_version": "0.45.1",
+    "coin_type": "118",
+    "min_tx_fee": "200",
+    "addr_prefix": "tnam",
+    "logo": "/namada.svg",
+    "assets": [{
+        "base": "nam",
+        "symbol": "NAM",
+        "exponent": "6",
+        "coingecko_id": "", 
+        "logo": "/namada.svg"
+    }]
+}
