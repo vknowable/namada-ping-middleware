@@ -62,6 +62,7 @@ pub async fn params_handler(State(app_state): State<Arc<AppState>>)
 pub async fn validators_handler(query: Query<ValidatorsQueryParams>, State(app_state): State<Arc<AppState>>) 
   -> Result<Json<ValidatorsResponse>, ApiError> {
 
+  // TODO: pagination support
   let current_epoch = rpc::query_epoch(app_state.get_client()).await?;
   let all_vals = rpc::get_all_validators(app_state.get_client(), current_epoch).await?;
   let mut response = ValidatorsResponse::new();
