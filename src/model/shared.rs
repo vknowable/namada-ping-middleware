@@ -18,6 +18,15 @@ pub struct PaginationInfo {
   pub total: Option<String>,
 }
 
+impl Default for PaginationInfo {
+  fn default() -> Self {
+    PaginationInfo {
+      next_key: None,
+      total: None,
+    }
+  }
+}
+
 #[derive(Serialize)]
 pub struct DenomAmount {
   pub denom: String,

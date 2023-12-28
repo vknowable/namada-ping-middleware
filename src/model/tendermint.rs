@@ -1,9 +1,9 @@
 use serde::Serialize;
-
 use tendermint::{node, Version, channel, chain};
 use tendermint_rpc::endpoint::block;
 
 use crate::model::{shared::PaginationInfo, staking::ConsensusKeyInfo};
+
 
 #[derive(Serialize)]
 pub struct LatestBlockResponse {

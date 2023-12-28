@@ -129,12 +129,6 @@ async fn get_proposal(app_state: Arc<AppState>, id: u64, current_epoch: Epoch, r
       let status: CosmosProposalStatus = map_status_namada_to_cosmos(proposal_status, proposal_result.result);
 
       if filter_proposal_by_status(requested_status, status) {
-        let proposal_id = proposal.id.to_string();
-        let at_type = proposal.r#type.to_string();
-        let title = proposal.content.get("title").unwrap_or(&"".to_string()).clone();
-        // TODO: concatenate 'abstract', 'motivation', and 'details'?
-        let description = proposal.content.get("details").unwrap_or(&"".to_string()).clone();
-
         let mut final_tally_result = FinalTallyInfo::default();
         final_tally_result.yes = proposal_result.total_yay_power.to_string_native();
         final_tally_result.no = proposal_result.total_nay_power.to_string_native();
@@ -147,17 +141,18 @@ async fn get_proposal(app_state: Arc<AppState>, id: u64, current_epoch: Epoch, r
         // get deposit amount
         let gov_params = rpc::query_governance_parameters(app_state.get_client()).await;
         let deposit = DenomAmount::nam_amount(gov_params.min_proposal_fund);
-        let total_deposit = vec![deposit];
 
+        // TODO: properly convert these from epochs to timestamps
         let voting_start_time = proposal.voting_start_epoch.to_string();
         let voting_end_time = proposal.voting_end_epoch.to_string();
 
         Ok(Some(ProposalItem {
-          proposal_id,
+          proposal_id: proposal.id.to_string(),
           content: ProposalInfo {
-            at_type,
-            title,
-            description,
+            at_type: proposal.r#type.to_string(),
+            title: proposal.content.get("title").unwrap_or(&"".to_string()).clone(),
+            // TODO: concatenate 'abstract', 'motivation', and 'details'?
+            description: proposal.content.get("details").unwrap_or(&"".to_string()).clone(),
             recipient: None,
             amount: None,
           },
@@ -165,7 +160,7 @@ async fn get_proposal(app_state: Arc<AppState>, id: u64, current_epoch: Epoch, r
           final_tally_result,
           submit_time,
           deposit_end_time,
-          total_deposit,
+          total_deposit: vec![deposit],
           voting_start_time,
           voting_end_time,
         }))
