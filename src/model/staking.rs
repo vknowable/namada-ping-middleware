@@ -27,9 +27,6 @@ pub struct ParamsResponse {
   pub max_entries: u32,
   pub historical_entries: u32,
   pub bond_denom: String,
-  pub validator_bond_factor: String,
-  pub global_liquid_staking_cap: String,
-  pub validator_liquid_staking_cap: String,
 }
 
 #[derive(Serialize)]
@@ -60,10 +57,6 @@ pub struct ValidatorInfo {
   pub unbonding_time: String,
   pub commission: CommissionInfo,
   pub min_self_delegation: String,
-  pub unbonding_on_hold_ref_count: String,
-  pub unbonding_ids: Vec<String>,
-  pub validator_bond_shares: String,
-  pub liquid_shares: String,
 }
 
 #[derive(Serialize)]

@@ -25,7 +25,7 @@ use crate::app::app_state::AppState;
 use crate::error::api_error::ApiError;
 use crate::model::{
   gov::{ParamsGovResponse, TallyResponse, FinalTallyInfo, ProposalInfo, ProposalsResponse, IndividualProposalResponse, ProposalItem, ProposalQueryParams, CosmosProposalStatus},
-  shared::{DenomAmount, SuffixedDur},
+  shared::{DEFAULT_TIMESTAMP, DenomAmount, SuffixedDur},
 };
 
 
@@ -134,7 +134,7 @@ async fn get_proposal(app_state: Arc<AppState>, id: u64, current_epoch: Epoch, r
         final_tally_result.no = proposal_result.total_nay_power.to_string_native();
 
         // TODO: how do we find this value?
-        let submit_time = "2023-12-13T19:06:15.819558905Z".to_string();
+        let submit_time = DEFAULT_TIMESTAMP.to_string();
         // TODO: properly convert these from epochs to timestamps
         let deposit_end_time = proposal.voting_start_epoch.to_string(); // same as voting_start_time?
 

@@ -7,5 +7,5 @@ A Namada full node is required; you can specify its url in the .env file at the 
 
 ### Known issues
 - many endpoints not implemented yet or still serving placeholder data
-- Ping.pub explorer will sometimes try to convert `tnam` addresses into `cosmosvaloper` addresses, resulting in Bech32 errors; this can cause the explorer to hang.
+- Ping.pub explorer will sometimes try to convert to/from `valoper` addresses (which don't exist on Namada), resulting in Bech32 errors; this can cause the explorer to hang.
 - Namada and Cosmos designs differ enough that it's not always obvious how to map one to the other

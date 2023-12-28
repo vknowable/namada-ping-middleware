@@ -4,7 +4,7 @@ use axum::{
 };
 use std::{
   sync::Arc,
-  time::Duration, ops::Div, thread::current,
+  time::Duration, ops::Div,
 };
 use namada_sdk::{
   proof_of_stake::{PosParams, types::ValidatorState},
@@ -17,7 +17,7 @@ use crate::{app::app_state::AppState, model::staking::CosmosValStatus};
 use crate::error::api_error::ApiError;
 use crate::model::{
   staking::{PoolResponse, PoolInfo, ParamsResponse, ValidatorsQueryParams, ValidatorsResponse, ValidatorInfo, ValidatorDescription, ConsensusKeyInfo, CommissionInfo, RatesInfo},
-  shared::{NAM, PaginationInfo, SuffixedDur},
+  shared::{NAM, DEFAULT_TIMESTAMP, PaginationInfo, SuffixedDur},
 };
 
 
@@ -48,12 +48,7 @@ pub async fn params_handler(State(app_state): State<Arc<AppState>>)
     // TODO: need to find out what these two values mean
     max_entries: 7,
     historical_entries: 1000,
-    //
     bond_denom: NAM.to_string(),
-    // TODO: what are these values for and do they have namada equivalents?
-    validator_bond_factor: "100".to_string(),
-    global_liquid_staking_cap: "0.25000".to_string(),
-    validator_liquid_staking_cap: "1.000".to_string(),
   };
 
   Ok(Json(response))
@@ -99,7 +94,7 @@ pub async fn validators_handler(query: Query<ValidatorsQueryParams>, State(app_s
               max_change_rate: commission_info.max_commission_change_per_epoch,
             },
             //TODO: placeholder... how to query this?
-            update_time: "1970-01-01T00:00:00Z".to_string(),
+            update_time: DEFAULT_TIMESTAMP.to_string(),
           }
         }
         None => CommissionInfo::default()
@@ -120,17 +115,11 @@ pub async fn validators_handler(query: Query<ValidatorsQueryParams>, State(app_s
         tokens: stake.div(NATIVE_SCALE as u64),
         delegator_shares: stake.to_string_native(),
         description,
-        //TODO: unsure what the next two fields are referring to
+        //TODO: how to query this info
         unbonding_height: "0".to_string(),
-        unbonding_time: "2023-09-30T06:17:37.572905825Z".to_string(),
+        unbonding_time: DEFAULT_TIMESTAMP.to_string(),
         commission,
         min_self_delegation: "1".to_string(),
-        //TODO: not sure what the below fields refer to
-        unbonding_on_hold_ref_count: "0".to_string(),
-        unbonding_ids: Vec::new(),
-        //TODO: not sure what the below fields refer to... commission/rewards waiting to be claimed?
-        validator_bond_shares: "500000".to_string(),
-        liquid_shares: "4141341414.000000".to_string(),
       };
       response.validators.push(validator_info);
     }

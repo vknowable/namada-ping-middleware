@@ -3,6 +3,7 @@ use namada_sdk::core::types::token::Amount;
 use std::time::Duration;
 
 pub const NAM: &str = "nam";
+pub const DEFAULT_TIMESTAMP: &str = "1970-01-01T00:00:00Z";
 
 #[derive(Deserialize)]
 pub struct PaginationQueryParams {

@@ -8,7 +8,7 @@ use crate::app::app_state::AppState;
 use crate::error::api_error::ApiError;
 use crate::model::{
   slashing::{SigningInfos, SigningInfosResponse, SlashingParamsInfo, SlashingParamsResponse},
-  shared::PaginationInfo,
+  shared::{DEFAULT_TIMESTAMP, PaginationInfo},
 };
 
 
@@ -36,7 +36,7 @@ pub async fn signing_infos_handler(State(_app_state): State<Arc<AppState>>)
       address: "tnam1234".to_string(),
       start_height: "0".to_string(),
       index_offset: "23414".to_string(),
-      jailed_until: "1970-01-01T00:00:00Z".to_string(),
+      jailed_until: DEFAULT_TIMESTAMP.to_string(),
       tombstoned: false,
       missed_blocks_counter: "2".to_string(),
     }],
