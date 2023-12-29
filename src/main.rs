@@ -54,8 +54,10 @@ async fn main() {
         .route("/cosmos/staking/v1beta1/pool", get(staking::pool_handler))
         .route("/cosmos/staking/v1beta1/validators", get(staking::validators_handler))
         .route("/cosmos/base/tendermint/v1beta1/blocks/latest", get(tendermint::latest_block_handler))
+        .route("/cosmos/base/tendermint/v1beta1/blocks/:height", get(tendermint::block_handler))
         .route("/cosmos/base/tendermint/v1beta1/node_info", get(tendermint::node_info_handler))
-        .route("/cosmos/base/tendermint/v1beta1/validatorsets/", get(tendermint::validator_sets_handler))
+        .route("/cosmos/base/tendermint/v1beta1/validatorsets/latest", get(tendermint::latest_validator_sets_handler))
+        .route("/cosmos/base/tendermint/v1beta1/validatorsets/:height", get(tendermint::validator_sets_handler))
         .with_state(app_state)
         .layer(cors);
 

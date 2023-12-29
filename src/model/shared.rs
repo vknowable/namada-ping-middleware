@@ -1,9 +1,14 @@
 use serde::{Serialize, Serializer, Deserialize};
 use namada_sdk::core::types::token::Amount;
 use std::time::Duration;
+use tendermint_proto::google::protobuf::Timestamp;
 
 pub const NAM: &str = "nam";
 pub const DEFAULT_TIMESTAMP: &str = "1970-01-01T00:00:00Z";
+pub const ZERO_TIMESTAMP: Timestamp = Timestamp {
+  seconds: -62135596800,
+  nanos: 0,
+};
 
 #[derive(Deserialize)]
 pub struct PaginationQueryParams {

@@ -3206,10 +3206,12 @@ name = "namada-ping-middleware"
 version = "0.1.0"
 dependencies = [
  "axum",
+ "base64 0.13.1",
  "borsh",
  "borsh-derive",
  "borsh-ext",
  "dotenv",
+ "hex",
  "namada_sdk",
  "prost 0.12.3",
  "prost-types 0.12.3",
@@ -3217,6 +3219,7 @@ dependencies = [
  "serde_json",
  "tendermint",
  "tendermint-config",
+ "tendermint-proto",
  "tendermint-rpc",
  "tokio",
  "tower-http",
