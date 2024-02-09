@@ -1,5 +1,5 @@
 use serde::{Serialize, Serializer, Deserialize};
-use namada_sdk::core::types::token::Amount;
+use namada_sdk::types::token::Amount;
 use std::time::Duration;
 use tendermint_proto::google::protobuf::Timestamp;
 

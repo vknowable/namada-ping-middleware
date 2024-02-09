@@ -1,5 +1,5 @@
 use serde::{Serialize, Deserialize};
-use namada_sdk::core::types::dec::Dec;
+use namada_sdk::types::dec::Dec;
 // use namada_sdk::core::ledger::governance::utils::ProposalStatus;
 use crate::model::shared::{DenomAmount, SuffixedDur, PaginationQueryParams, PaginationInfo};
 use std::time::Duration;

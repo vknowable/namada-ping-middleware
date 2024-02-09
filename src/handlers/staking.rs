@@ -9,9 +9,11 @@ use std::{
 use namada_sdk::{
   proof_of_stake::{PosParams, types::ValidatorState},
   rpc,
-  core::ledger::parameters::{storage, EpochDuration},
-  core::types::{token::NATIVE_SCALE, dec::Dec},
+  // core::ledger::parameters::{storage},
+  types::{token::NATIVE_SCALE, dec::Dec},
 };
+use namada_sdk::types::parameters::EpochDuration;
+use namada_parameters::storage;
 
 use crate::{app::app_state::AppState, model::staking::CosmosValStatus};
 use crate::error::api_error::ApiError;

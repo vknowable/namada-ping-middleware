@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use namada_sdk::core::types::{address::Address, dec::Dec, token::Amount};
+use namada_sdk::types::{address::Address, dec::Dec, token::Amount};
 use crate::model::shared::{SuffixedDur, PaginationInfo, PaginationQueryParams};
 
 

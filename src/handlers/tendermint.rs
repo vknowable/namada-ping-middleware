@@ -5,7 +5,7 @@ use axum::{
         Json,
     };
 use std::sync::Arc;
-use namada_sdk::{rpc, core::types::storage::BlockHeight};
+use namada_sdk::{rpc, types::storage::BlockHeight};
 // use hex::FromHex;
 // use base64::{encode_config, STANDARD};
 

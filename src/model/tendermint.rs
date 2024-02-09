@@ -4,7 +4,7 @@ use serde::Serialize;
 use tendermint::{node, channel, chain, Version, Time, Hash, block::Commit};
 use tendermint_rpc::endpoint::block;
 use tendermint_proto::{google::protobuf::Timestamp, types::CommitSig};
-use namada_sdk::core::types::{token::Amount, address::Address};
+use namada_sdk::types::{token::Amount, address::Address};
 use base64::{encode_config, STANDARD};
 
 use crate::model::{shared::{ZERO_TIMESTAMP, PaginationInfo}, staking::ConsensusKeyInfo};

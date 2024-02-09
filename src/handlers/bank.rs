@@ -3,7 +3,6 @@ use axum::{
   Json,
 };
 use std::sync::Arc;
-// use namada_sdk::core::types::token::Amount;
 
 use crate::app::app_state::AppState;
 use crate::error::api_error::ApiError;

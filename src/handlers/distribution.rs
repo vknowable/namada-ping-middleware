@@ -6,7 +6,7 @@ use std::sync::Arc;
 use namada_sdk::{
   proof_of_stake::PosParams,
   rpc,
-  core::types::{
+  types::{
     token::Amount,
     dec::Dec,
   },

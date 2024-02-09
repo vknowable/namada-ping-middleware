@@ -1,5 +1,5 @@
 use serde::Serialize;
-use namada_sdk::core::types::dec::Dec;
+use namada_sdk::types::dec::Dec;
 
 use crate::model::shared::DenomAmount;
 

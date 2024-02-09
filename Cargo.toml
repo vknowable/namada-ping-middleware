@@ -13,7 +13,8 @@ borsh = {version = "1.2.0", features = ["unstable__schema", "derive"]}
 borsh-ext = { git = "https://github.com/heliaxdev/borsh-ext", tag = "v1.2.0" }
 dotenv = "0.15.0"
 hex = "0.4.3"
-namada_sdk = { git = "https://github.com/anoma/namada", rev = "v0.28.1", default-features = false, features = ["tendermint-rpc", "std", "async-client", "async-send", "download-params"] }
+namada_parameters = { git = "https://github.com/anoma/namada", rev = "v0.31.2"}
+namada_sdk = { git = "https://github.com/anoma/namada", rev = "v0.31.2", default-features = false, features = ["tendermint-rpc", "std", "async-client", "async-send", "download-params", "rand" ] }
 prost = "0.12.0"
 prost-types = "0.12.0"
 serde = { version = "1.0.193", features = ["derive"] }

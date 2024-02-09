@@ -9,17 +9,18 @@ use std::{
 };
 use namada_sdk::{
   rpc,
-  core::types::{
+  types::{
     // token::Amount,
     dec::Dec,
     // time,
     storage::Key,
   },
-  // core::ledger::governance::parameters::GovernanceParameters,
-  core::ledger::{parameters::{storage, EpochDuration}, governance::utils::ProposalStatus}, proof_of_stake::Epoch,
-  core::ledger::governance::storage::keys as governance_storage,
-  core::ledger::governance::utils::{ProposalResult, TallyResult},
+  // core::ledger::parameters::{storage, EpochDuration},
 };
+use namada_sdk::governance::{storage::keys as governance_storage, utils::{ProposalStatus, ProposalResult, TallyResult}};
+use namada_sdk::proof_of_stake::Epoch;
+use namada_sdk::types::parameters::EpochDuration;
+use namada_parameters::storage;
 
 use crate::app::app_state::AppState;
 use crate::error::api_error::ApiError;
