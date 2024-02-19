@@ -33,7 +33,7 @@ impl Default for PaginationInfo {
   }
 }
 
-#[derive(Serialize)]
+#[derive(Serialize, Clone)]
 pub struct DenomAmount {
   pub denom: String,
   pub amount: String,

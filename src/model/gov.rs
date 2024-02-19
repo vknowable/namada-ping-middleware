@@ -1,7 +1,8 @@
+use namada_sdk::governance::storage::proposal::StorageProposal;
 use serde::{Serialize, Deserialize};
-use namada_sdk::types::dec::Dec;
+use namada_sdk::types::{dec::Dec, token::Amount};
 // use namada_sdk::core::ledger::governance::utils::ProposalStatus;
-use crate::model::shared::{DenomAmount, SuffixedDur, PaginationQueryParams, PaginationInfo};
+use crate::model::shared::{DenomAmount, SuffixedDur, PaginationQueryParams, PaginationInfo, DEFAULT_TIMESTAMP};
 use std::time::Duration;
 use std::fmt::Display;
 
@@ -73,6 +74,35 @@ pub struct ProposalItem {
   pub total_deposit: Vec<DenomAmount>,
   pub voting_start_time: String, //time
   pub voting_end_time: String, //time
+}
+
+impl From<StorageProposal> for ProposalItem {
+  fn from(value: StorageProposal) -> Self {
+
+    let content = ProposalInfo {
+      at_type: value.r#type.to_string(),
+      title: value.content.get("title").unwrap_or(&"".to_string()).clone(),
+      description: value.content.get("details").unwrap_or(&"".to_string()).clone(),
+      recipient: None,
+      amount: None,
+    };
+      ProposalItem {
+        proposal_id: value.id.to_string(),
+        content,
+        status: CosmosProposalStatus::PROPOSAL_STATUS_DEPOSIT_PERIOD,
+        final_tally_result: FinalTallyInfo {
+          yes: "0".to_string(),
+          abstain: "0".to_string(),
+          no: "0".to_string(),
+          no_with_veto: "0".to_string(),
+        },
+        submit_time: DEFAULT_TIMESTAMP.to_string(),
+        deposit_end_time: value.voting_start_epoch.to_string(),
+        total_deposit: vec![DenomAmount::nam_amount(Amount::from(0))],
+        voting_start_time: value.voting_start_epoch.to_string(),
+        voting_end_time: value.voting_end_epoch.to_string(),
+      }
+  }
 }
 
 // TODO: in Cosmos there are different proposal types (text, community spend, parameter change, etc)
